@@ -141,6 +141,4 @@ if __name__ == "__main__":
 		print("result =", int(val))
 	else:
 		print("reslut =", format(val, '.4f'))
-# This code is contributed
-# by Rituraj Jain
 
