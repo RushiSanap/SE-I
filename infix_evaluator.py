@@ -8,7 +8,7 @@ def precedence(op):
 	
 	if op == '+' or op == '-':
 		return 1
-	if op == '*' or op == '/' or '%':
+	if op == '*' or op == '/' or op == '%':
 		return 2
 	if op == '^':
 		return 3
