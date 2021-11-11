@@ -1,5 +1,6 @@
 from random import randint, choice, uniform
 from sys import argv
+from random import randint, choice
 
 argc = len(argv)
 if argc < 2:
@@ -87,3 +88,19 @@ while i < 15:
         print("Expression:", expr)
         print("Your output:", evaluate(expr)," Expected Output:", eval(expr))
         i += 1
+    expr_1 = expr.replace("^", "**")
+    flag = 0
+
+    try:
+        ans = eval( expr_1)
+        flag = 1
+    except:
+        pass
+
+    if( flag == 1 ):
+        if evaluate(expr) == ans :
+            print("\nSuccessful for Test case no.", i+1)
+        else:
+            print("\nFail for Testcase no.", i+1)
+            print("Expression:", expr)
+            print("Your output:", evaluate(expr)," Expected Output:", ans )    
