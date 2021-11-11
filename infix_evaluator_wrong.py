@@ -20,7 +20,7 @@ def precedence(op):
 # operations.
 def applyOp(a, b, op):
 	
-	if op == '+': return a + b
+	if op == '+': return a - b
 	if op == '-': return a - b
 	if op == '*': return a * b
 	if op == '/': return a / b
