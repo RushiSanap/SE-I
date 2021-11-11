@@ -1,5 +1,5 @@
 from math import exp
-from SE import evaluate
+from infix_evaluator import evaluate
 from random import randint, choice
 
 ops = ["+", "-", "*", "/", "%", "^"]
