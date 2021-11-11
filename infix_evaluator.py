@@ -6,12 +6,14 @@
 # of operators.
 def precedence(op):
 	
-	if op == '+' or op == '-':
+	if op == "(":
 		return 1
-	if op == '*' or op == '/' or op == '%':
+	if op == '+' or op == '-':
 		return 2
-	if op == '^':
+	if op == '*' or op == '/' or op == '%':
 		return 3
+	if op == '^':
+		return 4
 	return 0
 
 # Function to perform arithmetic
@@ -37,7 +39,6 @@ def evaluate(tokens):
 	i = 0
 	
 	while i < len(tokens):
-		
 		# Current token is a whitespace,
 		# skip it.
 		if tokens[i] == ' ':
@@ -58,6 +59,7 @@ def evaluate(tokens):
 			while (i < len(tokens) and
 				(tokens[i].isdigit() or tokens[i] == '.')):
 				number += tokens[i]
+				#val = (val * 10) + int(tokens[i])
 				i += 1
 				
 			if number.find('.') == -1:
@@ -95,6 +97,28 @@ def evaluate(tokens):
 			ops.pop()
 		
 		# Current token is an operator.
+		elif tokens[i] == "^":
+		
+			# While top of 'ops' has same or
+			# greater precedence to current
+			# token, which is an operator.
+			# Apply operator on top of 'ops'
+			# to top two elements in values stack.
+			
+			while (len(ops) != 0 and
+				precedence(ops[-1]) >
+				precedence(tokens[i])):
+						
+				val2 = values.pop()
+				val1 = values.pop()
+				op = ops.pop()
+				
+				values.append(applyOp(val1, val2, op))
+			
+			# Push current token to 'ops'.
+			ops.append(tokens[i])
+		
+		# Current token is an operator.
 		else:
 		
 			# While top of 'ops' has same or
@@ -102,6 +126,7 @@ def evaluate(tokens):
 			# token, which is an operator.
 			# Apply operator on top of 'ops'
 			# to top two elements in values stack.
+			
 			while (len(ops) != 0 and
 				precedence(ops[-1]) >=
 				precedence(tokens[i])):
@@ -141,4 +166,5 @@ if __name__ == "__main__":
 		print("result =", int(val))
 	else:
 		print("reslut =", format(val, '.4f'))
-
+# This code is contributed
+# by Rituraj Jain
